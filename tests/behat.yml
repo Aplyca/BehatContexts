@@ -1,0 +1,11 @@
+default:
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://localhost
+    suites:
+        frontend:
+            paths: [ %paths.base%/features ]
+            filters:
+                role: anonymous
+            contexts:
+                - Aplyca/BehatContex/SelectorsContext

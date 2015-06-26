@@ -1,0 +1,39 @@
+{
+    "name":         "aplyca/behat-contexts",
+    "description":  "Commonly used contexts for Behat",
+    "keywords":     ["BDD", "Behat", "Context"],
+    "homepage":     "http://www.aplyca.com",
+    "type":         "library",
+    "license":      "GPLv3",
+    "authors":      [
+        {
+            "name":      "Mauricio Sánchez",
+            "email":     "msanchez@aplyca.com",
+            "homepage":  "http://www.aplyca.com"
+        }
+    ],
+    "require": {
+        "php":          ">=5.3.3",
+        "behat/behat":  "~3.0",
+        "phpunit/phpunit": "*"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "2.0.*@dev"
+    },
+    "suggest": {
+        "behat/mink-extension": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Aplyca\\BehatContext": ""
+        }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2.x-dev"
+        }
+    }
+}
