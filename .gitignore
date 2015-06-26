@@ -1,0 +1,12 @@
+# Ignore everithing
+/*
+
+# Unnecesary files
+.DS_Store
+
+!/composer.json
+!/phpspec.yml
+!/.gitignore
+!/src
+!/tests
+!/examples
