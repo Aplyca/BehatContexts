@@ -2,29 +2,33 @@
 
 namespace Aplyca\BehatContext;
 
+use Behat\Behat\Hook\Scope\BeforeScenarioScope,
+    Symfony\Component\Yaml\Yaml;
+
 /**
  * Selectors context.
  */
 class SelectorsContext extends BaseContext
 {
-    private $parameters;
     private $selectors;
 
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
      *
-     * @param   array   $parameters     context parameters (set them up through behat.yml)
+     * @param   array   $selectors     context selectors (set them up through behat.yml)
      */
-    public function __construct(array $parameters = array())
+    public function __construct($selectors = array())
     {
-        $this->Parameters = $parameters;
+        $this->Selectors = $selectors;
     }
 
     /** @BeforeScenario */
     public function loadSelectors(BeforeScenarioScope $scope)
     {
-        $this->Selectors = Yaml::parse(file_get_contents('tests/behat/selectors.yml'));
+        if (is_string($this->Selectors)) {
+            $this->Selectors = Yaml::parse(file_get_contents($this->Selectors));
+        }
     }
 
     public function getSelector($item, $feature)
@@ -36,7 +40,7 @@ class SelectorsContext extends BaseContext
             return $selectors[$feature][$item];
         } else {
             throw new \Exception(
-                'The "'.$item.'" in "'.$feature.'" test is not defined.'
+                'The "'.$item.'" in "'.$feature.'" selector is not defined.'
             );
         }
     }

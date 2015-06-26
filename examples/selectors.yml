@@ -1,0 +1,2 @@
+page body:
+    element(s): "body ul.elements > li.element"

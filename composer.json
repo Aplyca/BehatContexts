@@ -14,18 +14,21 @@
     ],
     "require": {
         "php":          ">=5.3.3",
-        "behat/behat":  "~3.0",
+        "behat/behat":  "~3",
+        "behat/mink": "~1",
+        "behat/mink-extension": "~2",
+        "behat/mink-goutte-driver": "~1",
         "phpunit/phpunit": "*"
     },
     "require-dev": {
-        "phpspec/phpspec": "2.0.*@dev"
+        "phpspec/phpspec": "~2"
     },
     "suggest": {
         "behat/mink-extension": "*"
     },
     "autoload": {
         "psr-0": {
-            "Aplyca\\BehatContext": ""
+            "Aplyca\\BehatContext": "src/"
         }
     },
     "config": {

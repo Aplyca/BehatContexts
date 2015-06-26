@@ -1,0 +1,15 @@
+default:
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://www.google.com
+            sessions:
+                my_session:
+                    goutte: ~
+    suites:
+        frontend:
+            paths: [ %paths.base%/features ]
+            filters:
+                role: anonymous
+            contexts:
+                - Aplyca\BehatContext\SelectorsContext:
+                    selectors: "examples/selectors.yml"

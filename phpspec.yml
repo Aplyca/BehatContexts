@@ -1,0 +1,8 @@
+suites:
+    behat_contexts:
+        namespace: Aplyca\BehatContext
+        spec_prefix: spec
+        src_path: src
+        spec_path: tests
+
+formatter.name: pretty

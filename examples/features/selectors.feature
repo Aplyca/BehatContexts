@@ -7,4 +7,7 @@ Background:
     Given I am on homepage
 
 Scenario: See selectors of a page
+    Then I should see "element(s)" in the "page body"
+
+Scenario: See selectors of a page
     Then I should see "elements" in the "page body"
