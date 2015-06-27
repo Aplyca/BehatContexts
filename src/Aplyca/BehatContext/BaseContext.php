@@ -33,4 +33,16 @@ class BaseContext extends RawMinkContext {
     {
         $this->Parameters = $parameters;
     }
+
+    /**
+     * Returns fixed step argument (with \\" replaced back to ").
+     *
+     * @param string $argument
+     *
+     * @return string
+     */
+    protected function fixStepArgument($argument)
+    {
+        return str_replace('\\"', '"', $argument);
+    }
 }
