@@ -18,8 +18,7 @@
         "behat/mink": "~1",
         "behat/mink-extension": "~2",
         "behat/mink-goutte-driver": "~1",
-        "phpunit/phpunit": "*",
-        "aplyca/behat-contexts": "@dev"
+        "phpunit/phpunit": "*"
     },
     "require-dev": {
         "phpspec/phpspec": "~2"
