@@ -1,4 +1,4 @@
-Feature: Selectors sin a web page
+Feature: Selectors in a web page
       In order to validate the existence of selectors in a web page
       As an anonymous
       I need to be able to see the seelctors of the page

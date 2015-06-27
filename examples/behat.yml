@@ -1,4 +1,6 @@
 default:
+    autoload:
+        '': %paths.base%/contexts
     extensions:
         Behat\MinkExtension:
             base_url: http://www.google.com
@@ -11,5 +13,7 @@ default:
             filters:
                 role: anonymous
             contexts:
+                - Example\BehatContext\FeatureContext
+                - Aplyca\BehatContext\FormContext
                 - Aplyca\BehatContext\SelectorsContext:
                     selectors: "examples/selectors.yml"

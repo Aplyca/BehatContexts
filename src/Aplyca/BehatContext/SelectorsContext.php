@@ -50,11 +50,13 @@ class SelectorsContext extends BaseContext
      */
     public function iShouldSeeInThe($amount = 0, $item = "", $feature = "")
     {
+
+
         $selector = $this->getSelector($item, $feature);
         if ($amount > 0) {
-            $this->assertNumElements($amount, $selector);
+            $this->assertSession()->elementsCount('css', $selector, intval($amount));
         } else {
-            $this->assertElementOnPage($selector);
+            $this->assertSession()->elementExists('css', $selector);
         }
     }
 
@@ -65,9 +67,9 @@ class SelectorsContext extends BaseContext
     {
         $selector = $this->getSelector($item, $feature);
         if ($amount > 0) {
-            $this->assertNotNumElements($amount, $selector);
+            $this->assertSession()->elementsCount('css', $selector, intval($amount));
         } else {
-            $this->assertElementNotOnPage($selector);
+            $this->assertSession()->elementNotExists('css', $selector);
         }
     }
 
@@ -81,7 +83,7 @@ class SelectorsContext extends BaseContext
             $selector = $selector.":nth-child(".$position.")";
         }
 
-        $this->assertElementContainsText($selector, $text);
+        $this->assertSession()->elementTextContains('css', $selector, $this->fixStepArgument($text));
     }
 
     /**
@@ -94,6 +96,6 @@ class SelectorsContext extends BaseContext
             $selector = $selector.":nth-child(".$position.")";
         }
 
-        $this->assertElementNotContainsText($selector, $text);
+        $this->assertSession()->elementTextNotContains('css', $selector, $this->fixStepArgument($text));
     }
 }

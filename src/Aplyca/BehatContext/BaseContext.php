@@ -2,7 +2,7 @@
 
 namespace Aplyca\BehatContext;
 
-use Behat\Behat\Context\Context,
+use Behat\Behat\Context\Context as ContextInterface,
     Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Context\TranslatedContextInterface,
     Behat\Behat\Context\BehatContext,
@@ -12,13 +12,15 @@ use Behat\Behat\Context\Context,
     Behat\Gherkin\Node\TableNode,
     Behat\MinkExtension\Context\MinkContext,
     Symfony\Component\Yaml\Yaml,
-    Symfony\Component\Yaml\Exception\ParseException;
+    Symfony\Component\Yaml\Exception\ParseException,
+    Behat\Behat\Context\TranslatableContext,
+    Behat\MinkExtension\Context\RawMinkContext,
+    Behat\Mink\Exception\ExpectationException;
 
 /**
  * Base context.
  */
-class BaseContext extends MinkContext
-{
+class BaseContext extends RawMinkContext {
     private $parameters;
 
     /**
