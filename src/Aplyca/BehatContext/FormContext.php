@@ -51,15 +51,4 @@ class FormContext extends BaseContext
 
         $this->fillField($radioId, $radioButton->getAttribute('value'));
     }
-    /**
-     * Fill field in form
-     * @param  string $field name or label of the field
-     * @param  string $value value of the field
-     */
-    public function fillField($field, $value)
-    {
-        $field = $this->fixStepArgument($field);
-        $value = $this->fixStepArgument($value);
-        $this->getSession()->getPage()->fillField($field, $value);
-    }    
 }

@@ -45,4 +45,39 @@ class BaseContext extends RawMinkContext {
     {
         return str_replace('\\"', '"', $argument);
     }
+
+    /**
+     * Checks, that current page response status is equal to specified.
+     *
+     * @param  int $code HTTP status code
+     * @throws Behat\Mink\Exception\ExpectationException when current response status is not equal to $code
+     */
+    public function assertResponseStatus($code)
+    {
+        $this->assertSession()->statusCodeEquals($code);
+    }
+
+    /**
+     * Fill field in form
+     *
+     * @param  string $field name or label of the field
+     * @param  string $value value of the field
+     */
+    public function fillField($field, $value)
+    {
+        $field = $this->fixStepArgument($field);
+        $value = $this->fixStepArgument($value);
+        $this->getSession()->getPage()->fillField($field, $value);
+    }
+    /**
+     * Checks, that current page PATH is equal to specified.
+     *
+     * @param  string $page URL of the page
+     * @throws Behat\Mink\Exception\ExpectationException when the current page does not match $page
+     */
+    public function assertPageAddress($page)
+    {
+        $this->assertSession()->addressEquals($this->locatePath($page));
+    }
+
 }

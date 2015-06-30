@@ -8,7 +8,7 @@ default:
                 my_session:
                     goutte: ~
     suites:
-        frontend:
+        anonymous:
             paths: [ %paths.base%/features ]
             filters:
                 role: anonymous
@@ -17,3 +17,22 @@ default:
                 - Aplyca\BehatContext\FormContext
                 - Aplyca\BehatContext\SelectorsContext:
                     selectors: "examples/selectors.yml"
+        user:
+            paths: [ %paths.base%/features ]
+            filters:
+                role: user
+            contexts:
+                - Example\BehatContext\FeatureContext
+                - Aplyca\BehatContext\LoginContext:
+                    parameters:
+                        credentials:
+                            user:
+                                username: user
+                                password: password
+                        login:
+                            url: /login
+                            redirect_url: /
+                            username_field: Username
+                            password_field: Password
+                            login_button: Log In
+

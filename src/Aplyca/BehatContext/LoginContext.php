@@ -2,6 +2,8 @@
 
 namespace Aplyca\BehatContext;
 
+use Behat\Behat\Context\Step;
+
 /**
  * Login context.
  */
@@ -38,5 +40,16 @@ class LoginContext extends BaseContext
 
         $this->assertPageAddress($baseURL . $loginInfo["redirect_url"]);
         $this->assertResponseStatus("200");
+    }
+
+    /**
+     * Presses button with specified id|name|title|alt|value.
+     * @param  sttring $button Login form button
+     * @throws Behat\Mink\Exception\ElementNotFoundException when no button found
+     */
+    public function pressButton($button)
+    {
+        $button = $this->fixStepArgument($button);
+        $this->getSession()->getPage()->pressButton($button);
     }
 }
