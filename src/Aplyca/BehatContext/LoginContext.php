@@ -8,8 +8,6 @@ namespace Aplyca\BehatContext;
 class LoginContext extends BaseContext
 {
     private $parameters;
-    private $selectors;
-    private $credentials;
 
     /**
      * Initializes context.
@@ -22,47 +20,23 @@ class LoginContext extends BaseContext
         $this->Parameters = $parameters;
     }
 
-    /** @BeforeScenario */
-    public function loadSelectors(BeforeScenarioScope $scope)
-    {
-        $this->Selectors = Yaml::parse(file_get_contents('tests/behat/selectors.yml'));
-        $this->Credentials = Yaml::parse(file_get_contents('tests/behat/credentials.yml'));
-    }
-
-    public function getSelector($item, $feature)
-    {
-        $selectors = $this->Selectors;
-
-        if (isset($selectors[$feature][$item]))
-        {
-            return $selectors[$feature][$item];
-        } else {
-            throw new \Exception(
-                'The "'.$item.'" in "'.$feature.'" test is not defined.'
-            );
-        }
-    }
-
     /**
      * @Given /^I am logged in as "([^"]*)"$/
      */
     public function iAmLoggedInAs($user)
     {
-        $parameters = $this->Parameters;
-        $credentials = $this->Credentials;
-
+        $credentials = $this->Parameters["credentials"];
+        $loginInfo = $this->Parameters["login"];
         $baseURL = $this->getMinkParameter('base_url');
-        $loginURL = $baseURL . $parameters["login"]["URL"];
-        $redirectAfterLoginURL = $baseURL . $parameters["login"]["redirectURL"];
 
-        $session = $this->getMink()->getSession()->visit( $loginURL );
+        $session = $this->getMink()->getSession()->visit( $baseURL . $loginInfo["url"] );
         $this->assertResponseStatus("200");
 
-        $this->fillField($parameters["login"]["username field"], $credentials[$user]["username"]);
-        $this->fillField($parameters["login"]["password field"], $credentials[$user]["password"]);
-        $this->pressButton($parameters["login"]["login button"]);
+        $this->fillField($loginInfo["username_field"], $credentials[$user]["username"]);
+        $this->fillField($loginInfo["password_field"], $credentials[$user]["password"]);
+        $this->pressButton($loginInfo["login_button"]);
 
-        $this->assertPageAddress($redirectAfterLoginURL);
+        $this->assertPageAddress($baseURL . $loginInfo["redirect_url"]);
         $this->assertResponseStatus("200");
     }
 }
