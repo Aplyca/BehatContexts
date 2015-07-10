@@ -69,7 +69,8 @@ class FormContext extends BaseContext
         }
 
         $optionField = $selectField->find('named', array(
-            'option', $this->getSession()->getSelectorsHandler()->xpathLiteral($option),
+            'option',
+            $option,
         ));
 
         if (null === $optionField) {
