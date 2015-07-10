@@ -6,5 +6,9 @@ Feature: Form fill inputs a web page
 Background:
     Given I am on homepage
 
-Scenario: Fill form options
-    Given I select the "test" option from "test-form"
+Scenario: Fill and validate form options
+    Given I select "Option 1" from "Select options"
+    Then the "Option 1" option from "Select options" should be selected
+        And the option "Option 1" from "Select options" is selected
+        And "Option 1" from "Select options" is selected
+

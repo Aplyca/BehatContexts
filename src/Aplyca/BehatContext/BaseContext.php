@@ -80,4 +80,20 @@ class BaseContext extends RawMinkContext {
         $this->assertSession()->addressEquals($this->locatePath($page));
     }
 
+    /**
+     * Asserts a condition.
+     *
+     * @param bool   $condition
+     * @param string $message   Failure message
+     *
+     * @throws ExpectationException when the condition is not fulfilled
+     */
+    public function assertBoolean($condition, $message)
+    {
+        if ($condition) {
+            return;
+        }
+        throw new ExpectationException($message, $this->getSession());
+    }
+
 }

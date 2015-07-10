@@ -2,6 +2,9 @@
 
 namespace Aplyca\BehatContext;
 
+use Behat\Mink\Element\Element,
+    Behat\Mink\Exception\ElementNotFoundException;
+
 /**
  * Form context.
  */
@@ -38,17 +41,41 @@ class FormContext extends BaseContext
             }
         }
         if (!$radioId) {
-            throw new \InvalidArgumentException("Label '$labelText' not found.");
+            throw new ElementNotFoundException($this->getSession(), 'radio field', 'label', $labelText);
         }
 
         // Now use the ID to retrieve the button and click it
         /** @var NodeElement $radioButton */
         $radioButton = $this->getSession()->getPage()->find('css', "#$radioId");
-        if (!$radioButton)
-        {
-            throw new \Exception("$labelText radio button not found.");
+        if (!$radioButton) {
+            throw new ElementNotFoundException($this->getSession(), 'radio field', 'label', $labelText);
         }
 
         $this->fillField($radioId, $radioButton->getAttribute('value'));
+    }
+
+    /**
+     * Checks, that option from select with specified id|name|label|value is selected.
+     *
+     * @Then /^the "(?P<option>(?:[^"]|\\")*)" option from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected/
+     * @Then /^the option "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
+     * @Then /^"(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
+     */
+    public function theOptionFromShouldBeSelected($option, $select)
+    {
+        $selectField = $this->getSession()->getPage()->findField($select);
+        if (null === $selectField) {
+            throw new ElementNotFoundException($this->getSession(), 'select field', 'id|name|label|value', $select);
+        }
+
+        $optionField = $selectField->find('named', array(
+            'option', $this->getSession()->getSelectorsHandler()->xpathLiteral($option),
+        ));
+
+        if (null === $optionField) {
+            throw new ElementNotFoundException($this->getSession(), 'select option field', 'id|name|label|value', $option);
+        }
+
+        $this->assertBoolean($optionField->isSelected(), 'Select option field with value|text "'.$option.'" is not selected in the select "'.$select.'"');
     }
 }
