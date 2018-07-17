@@ -14,17 +14,12 @@
     ],
     "require": {
         "php":          ">=5.3.3",
-        "behat/behat":  "~3",
-        "behat/mink": "*",
-        "behat/mink-extension": "*",
-        "behat/mink-goutte-driver": "*",
+        "behat/mink-extension": "^2",
+        "behat/mink-goutte-driver": "^1",
         "phpunit/phpunit": "*"
     },
     "require-dev": {
         "phpspec/phpspec": "~2"
-    },
-    "suggest": {
-        "behat/mink-extension": "*"
     },
     "autoload": {
         "psr-0": {
