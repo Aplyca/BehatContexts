@@ -4,7 +4,7 @@
     "keywords":     ["BDD", "Behat", "Context"],
     "homepage":     "http://www.aplyca.com",
     "type":         "library",
-    "license":      "GPLv3",
+    "license":      "MIT",
     "authors":      [
         {
             "name":      "Mauricio Sánchez",
