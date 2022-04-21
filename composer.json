@@ -14,7 +14,7 @@
     ],
     "require": {
         "php":          ">=7",
-        "behat/mink-extension": "*",
+        "friends-of-behat/mink-extension": "*",
         "behat/mink-goutte-driver": "*",
         "phpunit/phpunit": "*"
     },
