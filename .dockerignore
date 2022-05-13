@@ -1,0 +1,13 @@
+# Ignore everything
+**
+
+# Allow app files
+!/src/*
+!/test/*
+!/composer.json
+
+# Ignore unnecessary files
+**/*~
+**/*.log
+**/.DS_Store
+**/Thumbs.db

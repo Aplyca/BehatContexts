@@ -4,8 +4,10 @@
 # Unnecesary files
 .DS_Store
 
+!/Dockerfile
 !/composer.json
 !/phpspec.yml
+!/.dockerignore
 !/.gitignore
 !/src
 !/tests

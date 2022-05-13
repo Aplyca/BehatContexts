@@ -16,7 +16,8 @@
         "php":          ">=7",
         "friends-of-behat/mink-extension": "*",
         "behat/mink-goutte-driver": "*",
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "fabpot/goutte": "^3.3"
     },
     "require-dev": {
         "phpspec/phpspec": "*"
